@@ -36,6 +36,9 @@ cd analysis && python validate_session.py sessions/<文件>.json --verbose
 **当前部署状态（2026-08-01 已完成）**：
 - 仓库：https://github.com/TaoTao-0222/trust-calibration-experiment （public）
 - 实验地址：https://taotao-0222.github.io/trust-calibration-experiment/index.html
+- 收数：DataPipe（experiment ID 已配置于 `js/experiment.js`），端到端仿真验证通过
+- **DataPipe 建实验的两个坑（已踩过）**：① 创建后须手动把 Data Collection 拨到 Active；
+  ② Settings 里的 Data Validation 须关闭（开着会一律 400 INVALID_DATA）
 - 推送通道：SSH over 443（本机网络对 github.com/github.io 的 HTTP 访问受限，
   `~/.ssh/config` 已配置 HostName ssh.github.com Port 443；API 操作走 api.github.com）
 
