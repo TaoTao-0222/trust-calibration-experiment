@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>外贸企业信用风险评估 · 智能风控系统回测</title>
+<link rel="stylesheet" href="vendor/jspsych.css">
+<link rel="stylesheet" href="css/experiment.css">
+</head>
+<body>
+<div id="jspsych-target"></div>
+
+<!-- jsPsych 核心与插件（本地化 vendor，勿改 CDN） -->
+<script src="vendor/index.browser.min.js"></script>
+<script src="vendor/plugin-html-button-response.min.js"></script>
+<script src="vendor/plugin-html-slider-response.min.js"></script>
+<script src="vendor/plugin-survey-likert.min.js"></script>
+<script src="vendor/plugin-survey-multi-choice.min.js"></script>
+<script src="vendor/plugin-survey-text.min.js"></script>
+<script src="vendor/plugin-instructions.min.js"></script>
+<script src="vendor/plugin-call-function.min.js"></script>
+
+<!-- 刺激数据（build_stimuli.py 编译产物） -->
+<script src="stimuli/params.js"></script>
+<script src="stimuli/case_pool.js"></script>
+<script src="stimuli/templates.js"></script>
+
+<!-- 生成与渲染逻辑 -->
+<script src="js/rng.js"></script>
+<script src="js/schedule.js"></script>
+<script src="js/advice.js"></script>
+<script src="js/render.js"></script>
+<script src="js/trials.js"></script>
+<script src="js/questionnaires.js"></script>
+<script src="js/experiment.js"></script>
+</body>
+</html>

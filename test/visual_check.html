@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>界面走查 · visual check</title>
+<link rel="stylesheet" href="../vendor/jspsych.css">
+<link rel="stylesheet" href="../css/experiment.css">
+</head>
+<body>
+<div id="jspsych-target"></div>
+<script src="../vendor/index.browser.min.js"></script>
+<script src="../vendor/plugin-html-button-response.min.js"></script>
+<script src="../stimuli/params.js"></script>
+<script src="../stimuli/case_pool.js"></script>
+<script src="../stimuli/templates.js"></script>
+<script src="../js/rng.js"></script>
+<script src="../js/schedule.js"></script>
+<script src="../js/advice.js"></script>
+<script src="../js/render.js"></script>
+<script src="../js/trials.js"></script>
+<script>
+// 用固定 seed 装配单屏，供截图走查：?stage=initial|final|feedback|probe
+const stage = new URLSearchParams(location.search).get("stage") || "final";
+const rng = new RNG(2026);
+const c = CASE_POOL[3];
+const row = { trial: 0, phase: "P2", advisors: ["H", "M", "L"], divergence: "high",
+              pure_number: false, minority: "", combos: { H: [1, 1], M: [0, 1], L: [1, 0] } };
+const a = genAdvice(c.p, row, rng);
+const names = { H: ["Alpha", "#3a7bd5"], M: ["Beta", "#2fa36b"], L: ["Gamma", "#e08a2e"] };
+const advs = row.advisors.map(k => ({
+  key: k, name: names[k][0], color: names[k][1], prob: a[k], combo: row.combos[k],
+  pure_number: false, text: renderAdvice(a[k], c.indicators, row.combos[k], rng),
+  score: scoreOf(a[k], 0),
+}));
+let tl;
+if (stage === "initial") tl = [{ type: JasJudgePlugin, stage: "initial", case_data: c }];
+else if (stage === "final") tl = [{ type: JasJudgePlugin, stage: "final", case_data: c,
+  advisors: advs, I_init: 52 }];
+else if (stage === "feedback") tl = [{ type: FeedbackPlugin, case_data: c, outcome: 0,
+  advisors: advs, self_scores: { I: 66, F: 78, I_val: 52, F_val: 61 } }];
+else tl = [{ type: ProbePlugin, advisor: advs[0] }];
+initJsPsych({ display_element: "jspsych-target" }).run(tl);
+</script>
+</body>
+</html>

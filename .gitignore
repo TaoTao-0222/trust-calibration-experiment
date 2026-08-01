@@ -1,0 +1,6 @@
+# 数据与缓存（不入库）
+analysis/sessions/
+__pycache__/
+.DS_Store
+*.tmp-*
+nohup.out

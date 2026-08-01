@@ -1,0 +1,392 @@
+/* experiment.css — 实验全局样式（须在 vendor/jspsych.css 之后加载）
+   覆盖对象：trials.js 三个自定义插件（JAS 判断屏 / 反馈屏 / 探针屏）与
+   questionnaires.js 各问卷节点（survey-likert / html-slider-response / multi-choice / survey-text）。
+   主色 #2c5aa0；顾问徽标颜色由 JS 内联注入（蓝 #3a7bd5 / 绿 #2fa36b / 橙 #e08a2e）。 */
+
+/* ---------------------------------------------------------------- 整体 */
+body {
+  background: #f5f6f8;
+}
+
+.jspsych-display-element {
+  font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Noto Sans CJK SC", sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #23272e;
+  background: #f5f6f8;
+}
+
+.jspsych-content {
+  width: min(1100px, 94vw);
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  padding: 24px 0 48px;
+}
+
+/* 卡片通用件：白底圆角阴影 */
+.case-card,
+.adv-card,
+.fb-card,
+.probe-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(30, 41, 59, 0.08);
+  padding: 24px 28px;
+}
+
+/* ---------------------------------------------------------------- jsPsych 按钮（沿用 .jspsych-btn，统一配色） */
+.jspsych-btn {
+  background: #2c5aa0;
+  color: #ffffff;
+  border: 1px solid #2c5aa0;
+  border-radius: 6px;
+  padding: 10px 30px;
+  font-size: 16px;
+  font-family: inherit;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.jspsych-btn:hover {
+  background: #234a85;
+  border-color: #234a85;
+  color: #ffffff;
+}
+.jspsych-btn:active {
+  background: #1d3f70;
+  border-color: #1d3f70;
+  color: #ffffff;
+}
+.jspsych-btn:disabled {
+  background: #c9d2e0;
+  border-color: #c9d2e0;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+.btn-row {
+  text-align: center;
+  margin-top: 22px;
+}
+
+/* ---------------------------------------------------------------- 滑条（原生 range 统一美化） */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: #d7dde6;
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #d7dde6;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: #2c5aa0;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+input[type="range"]::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #d7dde6;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #2c5aa0;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* 判断屏滑条行（trials.js sliderRow） */
+.slider-row {
+  margin: 20px 0;
+}
+.slider-label {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.slider-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 12px;
+}
+.slider-wrap input[type="range"] {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.slider-end {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: 14px;
+  color: #6a7380;
+}
+.slider-val {
+  flex: 0 0 auto;
+  min-width: 46px;
+  text-align: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #e8eef7;
+  color: #2c5aa0;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* html-slider-response 插件容器（其 wrapper 带内联 margin，需 !important 压缩） */
+#jspsych-html-slider-response-wrapper {
+  margin: 24px 0 !important;
+}
+#jspsych-html-slider-response-stimulus {
+  margin-bottom: 28px;
+}
+.jspsych-html-slider-response-container {
+  max-width: 720px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.jspsych-html-slider-response-container span {
+  font-size: 14px !important;
+  line-height: 1.4;
+}
+.jspsych-slider {
+  width: 100%;
+}
+
+/* ---------------------------------------------------------------- 案例卡（trials.js caseCard） */
+.case-card {
+  margin-bottom: 20px;
+}
+.case-card.compact {
+  padding: 14px 20px;
+  font-size: 15px;
+  box-shadow: 0 1px 6px rgba(30, 41, 59, 0.06);
+}
+.case-vignette {
+  margin-bottom: 14px;
+  line-height: 1.8;
+}
+.ind-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ind-chip {
+  background: #f0f3f7;
+  border: 1px solid #e1e6ee;
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-size: 14px;
+  color: #3c4450;
+  white-space: nowrap;
+}
+.ind-chip b {
+  color: #1f2630;
+}
+
+/* ---------------------------------------------------------------- 顾问建议卡（三列 flex） */
+.adv-row {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  margin: 18px 0;
+}
+.adv-card {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 20px;
+}
+.adv-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.adv-badge {
+  display: inline-block;
+  border-radius: 6px;
+  padding: 3px 12px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.adv-prob {
+  font-size: 30px;
+  font-weight: 700;
+  color: #1f2630;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+.adv-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #333a45;
+  margin-top: 6px;
+}
+.adv-text.pn {
+  color: #8a929e;
+  font-style: italic;
+}
+
+/* ---------------------------------------------------------------- 反馈屏（trials.js FeedbackPlugin） */
+.fb-card {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.fb-truth {
+  text-align: center;
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+.oc-yes {
+  color: #c0392b;
+  font-weight: 700;
+}
+.oc-no {
+  color: #1e8449;
+  font-weight: 700;
+}
+.fb-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+.fb-table th,
+.fb-table td {
+  padding: 9px 14px;
+  text-align: center;
+}
+.fb-table thead th {
+  border-bottom: 2px solid #ccd4de;
+  color: #5a6370;
+  font-weight: 600;
+}
+.fb-table tbody td {
+  border-bottom: 1px solid #edf0f4;
+}
+.fb-table tfoot td {
+  border-top: 2px solid #ccd4de;
+}
+
+/* ---------------------------------------------------------------- 探针屏（trials.js ProbePlugin） */
+.probe-card {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.probe-head {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* ---------------------------------------------------------------- 问卷（questionnaires.js） */
+/* 题干 / 陈述句：左对齐不折行错位 */
+.likert-statement,
+.jspsych-content .jspsych-survey-likert-statement {
+  display: block;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.7;
+  text-align: left;
+  margin: 18px 0 10px;
+  padding-top: 0;
+  color: #23272e;
+}
+.jspsych-content .jspsych-survey-likert-preamble {
+  text-align: left;
+  margin-bottom: 6px;
+  color: #3c4450;
+}
+/* 李克特选项行：各档等宽、顶部对齐，窄 margin 下文字在档内换行而不错位 */
+.jspsych-content .jspsych-survey-likert-opts {
+  font-size: 14px;
+  line-height: 1.35;
+}
+.jspsych-content .jspsych-survey-likert-opts li {
+  vertical-align: top;
+  text-align: center;
+}
+.jspsych-content .jspsych-survey-likert-opt-label {
+  color: #4a5260;
+}
+/* 量表页统一收进卡片观感 */
+.jspsych-survey-likert-form,
+.jspsych-survey-multi-choice-form,
+#jspsych-survey-text-form {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(30, 41, 59, 0.08);
+  padding: 22px 28px 26px;
+}
+/* 多选题 */
+.jspsych-content .jspsych-survey-multi-choice-question {
+  margin: 14px 0;
+  text-align: left;
+}
+.jspsych-content .jspsych-survey-multi-choice-option {
+  line-height: 1.9;
+}
+/* 文本题输入框 */
+.jspsych-display-element input[type="text"],
+.jspsych-display-element textarea,
+.jspsych-display-element input[type="number"] {
+  font-family: inherit;
+  font-size: 16px;
+  border: 1px solid #c6cdd8;
+  border-radius: 6px;
+  padding: 8px 12px;
+  background: #fbfcfe;
+  color: #23272e;
+}
+.jspsych-display-element input[type="text"]:focus,
+.jspsych-display-element textarea:focus {
+  outline: none;
+  border-color: #2c5aa0;
+  box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.15);
+}
+.jspsych-content .jspsych-survey-text-question {
+  text-align: left;
+  margin: 14px 0;
+}
+
+/* ---------------------------------------------------------------- 窄屏适配 */
+@media (max-width: 720px) {
+  .adv-row {
+    flex-direction: column;
+  }
+  .case-card,
+  .adv-card,
+  .fb-card,
+  .probe-card,
+  .jspsych-survey-likert-form,
+  .jspsych-survey-multi-choice-form,
+  #jspsych-survey-text-form {
+    padding: 16px 18px;
+  }
+  .slider-end {
+    font-size: 12px;
+  }
+  .adv-prob {
+    font-size: 26px;
+  }
+}
