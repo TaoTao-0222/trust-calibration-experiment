@@ -33,18 +33,23 @@ cd analysis && python validate_session.py sessions/<文件>.json --verbose
 
 ## 三、部署上线（GitHub Pages + DataPipe）
 
-1. **建仓库**：把 `实验程序/` 整体推到一个 GitHub 仓库，Settings → Pages 选主分支根目录；
-   得到地址如 `https://<user>.github.io/<repo>/index.html`。
-2. **建 DataPipe 实验**：https://pipe.jspsych.org 用 OSF 账号登录 → New Experiment →
-   记录 Experiment ID → 填入 `js/experiment.js` 的 `CONFIG.datapipe_experiment_id`。
+**当前部署状态（2026-08-01 已完成）**：
+- 仓库：https://github.com/TaoTao-0222/trust-calibration-experiment （public）
+- 实验地址：https://taotao-0222.github.io/trust-calibration-experiment/index.html
+- 推送通道：SSH over 443（本机网络对 github.com/github.io 的 HTTP 访问受限，
+  `~/.ssh/config` 已配置 HostName ssh.github.com Port 443；API 操作走 api.github.com）
+
+**剩余步骤**：
+1. **建 DataPipe 实验**：https://pipe.jspsych.org 用 OSF 账号登录 → New Experiment →
+   记录 Experiment ID → 填入 `js/experiment.js` 的 `CONFIG.datapipe_experiment_id` 并推送。
    （也可自建：把 `analysis/dev_server.py` 部署到有 HTTPS 的服务器，
    `CONFIG.save_url` 指向其 `/save`。）
-3. **平台接入**（Credamo / Prolific 通用）：
+2. **平台接入**（Credamo / Prolific 通用）：
    - 发两条链接精确配平两臂：`.../index.html?id={平台ID占位}&arm=conflict&redirect={回跳}`
      与 `arm=control`（也可省略 arm 参数，程序按 id 哈希自动各半）；
    - 完成码：页面末屏展示（由 id+盐哈希），在平台后台核对；`redirect` 参数支持完成回跳；
    - 数据：DataPipe 后台按 sessionID 下载 JSON（P1/P2/P3/final 四个分块，防中途退出丢数）。
-4. **软启动建议**：先导虽已跳过，仍建议先放 20–30 人，用 `validate_session.py` 抽检 +
+3. **软启动建议**：先导虽已跳过，仍建议先放 20–30 人，用 `validate_session.py` 抽检 +
    试次级质量指标（RT 分布、滑条使用、注意力检查通过率）确认后再放量。
 
 ## 四、数据字典（saveChunk 载荷）
