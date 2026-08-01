@@ -5,7 +5,7 @@
 "use strict";
 
 const CONFIG = {
-  datapipe_experiment_id: "",        // DataPipe 实验 ID（README 步骤 2 填入；空则跳过 DataPipe）
+  datapipe_experiment_id: "jMD0X5Z3ZbtE",  // DataPipe 实验 ID（README 步骤 2 填入；空则跳过 DataPipe）
   save_url: "",                      // 自建保存端点（POST JSON；空则用下载兜底）
   completion_salt: "trust-calib-2026",
   n_practice: 3,
