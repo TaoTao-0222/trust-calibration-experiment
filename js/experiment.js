@@ -245,12 +245,15 @@ function comprehensionCheck() {
 }
 
 function attentionCheck2() {
+  // 锚点与 questionnaires.js 的 LIKERT7 保持一致（“比较同意”= 第 5 档，原始记录值 4）。
+  // 2026-08-02 先导（n=62）发现旧锚点（“6 比较同意”）致 0/62 通过——被试按全套量表的
+  // “比较同意=第 5 档”习惯作答被误杀，故对齐；该批数据 AC2 不作剔除依据。
   return {
     type: jsPsychSurveyLikert,
     preamble: "<h3>中途确认</h3>",
     questions: [{ prompt: "为确认您在认真阅读，本题请选择「比较同意」。",
       labels: ["1 很不同意", "2 不同意", "3 有点不同意", "4 中立",
-               "5 有点同意", "6 比较同意", "7 很同意"], required: true }],
+               "5 比较同意", "6 同意", "7 很同意"], required: true }],
     data: { record_type: "attention_check", ac_id: 2 },
     scale_width: 700,
   };
