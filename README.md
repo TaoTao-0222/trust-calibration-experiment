@@ -73,8 +73,8 @@ combos、d_tilde 字段即模拟管线的同名量。
 - 材料变更 → 改 `实验材料/` 后重跑 `python build_stimuli.py`（重新编译 stimuli/*.js）；
   模板库版本以 `stimuli/templates.js` 的 TEMPLATE_VERSION 为准，与 `模拟/src/design.py` 同步。
 - 排程/建议参数变更 → 改 `模拟/src/`（Python 真源）后重跑 build_stimuli + headless_test。
-- **量表条目为 v0.9 候选**（questionnaires.js 文件头清单），预注册冻结前需文献核对
-  （Mayer & Davis 1999 / MAILS / PFIS / Lipkus–Schwartz numeracy）。
+- **量表条目 v1.0 已冻结**（2026-08-02 文献核对，逐条核对表见 `量表条目文献核对.md`）；
+  后续条目改动须同步更新核对表与预注册声明。
 - vendor/ 为 jsPsych 8.3.0 本地化，升级需回归测试。
 
 ## 六、已知边界
